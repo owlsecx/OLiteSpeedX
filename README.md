@@ -18,16 +18,18 @@
 
 ## 📌 Overview
 
-OpenLiteSpeed / LiteSpeed configuration hardening auditor (offline, read-only)
+OLiteSpeedX is an offline, read-only auditor for OpenLiteSpeed / LiteSpeed configuration (`httpd_config.conf`, vhconf, admin_config). It reviews listeners/TLS, WebAdmin, security, PHP/LSAPI, suEXEC, logging, rewrite, and LSCache settings, plus ownership/permission checks. Secrets are masked; reports export with score/grade to TXT, Markdown, JSON, CSV, or SARIF.
 
 ---
 
 ## ✨ Features
 
-- Stdlib parser for the LiteSpeed block format (heredocs too)
-- Listeners / TLS, WebAdmin, security section, PHP / LSAPI, suEXEC, disclosure, logging, .htaccess, rewrite, LSCache
-- Ownership / permission checks, secret masking, CWE + ATT&CK
-- Score + grade, TXT / MD / JSON / CSV / SARIF, --demo self-test
+- Stdlib parser for the LiteSpeed block format, including heredocs
+- Listener / TLS, WebAdmin, security section, PHP/LSAPI, suEXEC, disclosure, logging, .htaccess, rewrite, LSCache checks
+- Ownership and permission review with optional docRoot content scanning
+- Secret masking; CWE + MITRE ATT&CK mapping per finding
+- Score and grade; hardened templates via `--template`
+- TXT / MD / JSON / CSV / SARIF export, `--demo` self-test, and CI severity gates
 
 ---
 
@@ -41,7 +43,10 @@ OpenLiteSpeed / LiteSpeed configuration hardening auditor (offline, read-only)
 ## 🚀 Usage
 
 ```bash
-./OLiteSpeedX
+./OLiteSpeedX -c /usr/local/lsws/conf --scan
+./OLiteSpeedX --root ./collected -f sarif -o litespeed.sarif --fail-on high
+./OLiteSpeedX --demo --list-rules
+./OLiteSpeedX --help
 ```
 
 ---
